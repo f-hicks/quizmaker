@@ -1,5 +1,9 @@
 package com.fhicks;
 import java.util.*;
+
+import com.fhicks.gui.quizUi;
+import com.fhicks.gui.quizUi.*;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -72,7 +76,9 @@ public class App{
 
     public static void main(String[] args){
         String[][] questions = generate_quiz();
-        
+        new quizUi();
+        quizUi.ui(questions);
+
         
     }
 }
