@@ -2,15 +2,16 @@ package com.fhicks.gui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.lang.InterruptedException;
 
-public class quizUi implements ActionListener {
+public class quizUi {
     static private JPanel panel;
     static private JButton buttonA;
     static private JButton buttonB;
     static private JButton buttonC;
     static private JButton buttonD;
     
-    public quizUi(String[][] questions){
+    public quizUi(final String[][] questions){
 
         panel = new JPanel(new GridLayout(2, 2));
         buttonA = new JButton(questions[0][1]);
@@ -35,11 +36,10 @@ public class quizUi implements ActionListener {
         buttonB.setBackground(Color.decode("#1f1f1f"));
         buttonC.setBackground(Color.decode("#1f1f1f"));
         buttonD.setBackground(Color.decode("#1f1f1f"));
-
-        buttonA.addActionListener(this);
-        buttonB.addActionListener(this);
-        buttonC.addActionListener(this);
-        buttonD.addActionListener(this);
+        buttonA.addActionListener(e -> checkAnswer(buttonA, "A", questions));
+        buttonB.addActionListener(e -> checkAnswer(buttonB, "B", questions));
+        buttonC.addActionListener(e -> checkAnswer(buttonC, "C", questions));
+        buttonD.addActionListener(e -> checkAnswer(buttonD, "D", questions));
 
 
         panel.add(buttonA);
@@ -86,15 +86,31 @@ public class quizUi implements ActionListener {
     public static void Main(String[] args) {
         System.out.println("Hello World");
     }
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == buttonA) {
-            System.out.println("A");
-        } else if (e.getSource() == buttonB) {
-            System.out.println("B");
-        } else if (e.getSource() == buttonC) {
-            System.out.println("C");
-        } else if (e.getSource() == buttonD) {
-            System.out.println("D");
+
+    private void checkAnswer(JButton buttonPressedObj, String buttonPressed, String[][] questions) {
+        buttonA.setEnabled(false);
+        buttonB.setEnabled(false);
+        buttonC.setEnabled(false);
+        buttonD.setEnabled(false);
+        System.out.println(buttonPressed);
+        if (buttonPressed.equalsIgnoreCase(questions[0][5])){
+            System.out.println("Correct");
+            buttonPressedObj.setBackground(Color.GREEN);
+        } else {
+            System.out.println("Incorrect");    
+            buttonPressedObj.setBackground(Color.RED);
         }
+        try{
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
+        buttonPressedObj.setBackground(Color.decode("#1f1f1f"));
+        buttonA.setEnabled(true);
+        buttonB.setEnabled(true);
+        buttonC.setEnabled(true);
+        buttonD.setEnabled(true);
+
+
     }
 }
