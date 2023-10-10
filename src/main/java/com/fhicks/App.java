@@ -2,7 +2,6 @@ package com.fhicks;
 import java.util.*;
 
 import com.fhicks.gui.quizUi;
-import com.fhicks.gui.quizUi.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;

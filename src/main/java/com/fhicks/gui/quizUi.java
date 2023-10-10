@@ -1,6 +1,5 @@
 package com.fhicks.gui;
 import javax.swing.*;
-import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -12,8 +11,10 @@ public class quizUi implements ActionListener {
 
         frame.setLayout(new BorderLayout());
         frame.getContentPane().setBackground(Color.decode("#1f1f1f"));
-        frame.add(new JLabel(questions[0][0], JLabel.CENTER),
-            BorderLayout.NORTH);
+        JLabel question = new JLabel(questions[0][0], JLabel.CENTER);
+        question.setForeground(Color.WHITE);
+        question.setFont(new Font("ARIAL", 10, 50));
+        frame.add(question, BorderLayout.NORTH);
 
         frame.setSize(300, 300);
         KeyStroke escapeKeyStroke = KeyStroke.getKeyStroke("ESCAPE");
