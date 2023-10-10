@@ -75,8 +75,7 @@ public class App{
 
     public static void main(String[] args){
         String[][] questions = generate_quiz();
-        new quizUi();
-        quizUi.ui(questions);
+        new quizUi(questions);
 
         
     }
