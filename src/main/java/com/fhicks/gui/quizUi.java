@@ -10,20 +10,34 @@ public class quizUi {
     static private JButton buttonB;
     static private JButton buttonC;
     static private JButton buttonD;
+    static private JLabel question;
+    static private int questionnum;
     
     public quizUi(final String[][] questions){
-
+        questionnum = 0;
         panel = new JPanel(new GridLayout(2, 2));
-        buttonA = new JButton(questions[0][1]);
-        buttonB = new JButton(questions[0][2]);
-        buttonC = new JButton(questions[0][3]);
-        buttonD = new JButton(questions[0][4]);
+        buttonA = new JButton(questions[questionnum][1]);
+        buttonB = new JButton(questions[questionnum][2]);
+        buttonC = new JButton(questions[questionnum][3]);
+        buttonD = new JButton(questions[questionnum][4]);
 
         // Set button borders with different colors
-        buttonA.setBorder(BorderFactory.createLineBorder(Color.RED));
-        buttonB.setBorder(BorderFactory.createLineBorder(Color.GREEN));
-        buttonC.setBorder(BorderFactory.createLineBorder(Color.BLUE));
-        buttonD.setBorder(BorderFactory.createLineBorder(Color.YELLOW));
+        buttonA.setBorder(BorderFactory.createCompoundBorder(
+        BorderFactory.createLineBorder(Color.RED, 2),
+        BorderFactory.createLineBorder(Color.BLACK, 2)
+        ));
+        buttonB.setBorder(BorderFactory.createCompoundBorder(
+        BorderFactory.createLineBorder(Color.GREEN, 2),
+        BorderFactory.createLineBorder(Color.BLACK, 2)
+        ));
+        buttonC.setBorder(BorderFactory.createCompoundBorder(
+        BorderFactory.createLineBorder(Color.BLUE, 2),
+        BorderFactory.createLineBorder(Color.BLACK, 2)
+        ));
+        buttonD.setBorder(BorderFactory.createCompoundBorder(
+        BorderFactory.createLineBorder(Color.YELLOW, 2),
+        BorderFactory.createLineBorder(Color.BLACK, 2)
+        ));
 
         // Set button foreground colors
         buttonA.setForeground(Color.WHITE);
@@ -52,7 +66,7 @@ public class quizUi {
 
         frame.setLayout(new BorderLayout());
         frame.getContentPane().setBackground(Color.decode("#1f1f1f"));
-        JLabel question = new JLabel(questions[0][0], JLabel.CENTER);
+        question = new JLabel(questions[questionnum][0], JLabel.CENTER);
         question.setForeground(Color.WHITE);
         question.setFont(new Font("ARIAL", 10, 40));
         frame.add(question, BorderLayout.NORTH);
@@ -93,19 +107,37 @@ public class quizUi {
         buttonC.setEnabled(false);
         buttonD.setEnabled(false);
         System.out.println(buttonPressed);
-        if (buttonPressed.equalsIgnoreCase(questions[0][5])){
+        if (buttonPressed.equalsIgnoreCase(questions[questionnum][5]) == true){
             System.out.println("Correct");
+            buttonPressedObj.setBackground(Color.decode("#1f1f1f"));
+            buttonPressedObj.setSelected(false);
             buttonPressedObj.setBackground(Color.GREEN);
-        } else {
+        } else 
+        try {
+            if (questions[questionnum][6] != null || (buttonPressed.equalsIgnoreCase(questions[questionnum][6]))){
+                System.out.println("Correct");
+                buttonPressedObj.setBackground(Color.decode("#1f1f1f"));
+                buttonPressedObj.setSelected(false);
+                buttonPressedObj.setBackground(Color.GREEN);
+            } 
+        } catch (ArrayIndexOutOfBoundsException e) {} 
+        finally {
             System.out.println("Incorrect");    
+            buttonPressedObj.setBackground(Color.decode("#1f1f1f"));
             buttonPressedObj.setBackground(Color.RED);
         }
         try{
-            Thread.sleep(10000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             System.out.println(e);
         }
         buttonPressedObj.setBackground(Color.decode("#1f1f1f"));
+        ++questionnum;
+        buttonA.setText(questions[questionnum][1]);
+        buttonB.setText(questions[questionnum][2]);
+        buttonC.setText(questions[questionnum][3]);
+        buttonD.setText(questions[questionnum][4]);
+        question.setText(questions[questionnum][0]);
         buttonA.setEnabled(true);
         buttonB.setEnabled(true);
         buttonC.setEnabled(true);
