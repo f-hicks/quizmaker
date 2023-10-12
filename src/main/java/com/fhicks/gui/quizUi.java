@@ -50,6 +50,8 @@ public class quizUi {
         buttonB.setBackground(Color.decode("#1f1f1f"));
         buttonC.setBackground(Color.decode("#1f1f1f"));
         buttonD.setBackground(Color.decode("#1f1f1f"));
+
+        //set action listeners
         buttonA.addActionListener(e -> checkAnswer(buttonA, "A", questions));
         buttonB.addActionListener(e -> checkAnswer(buttonB, "B", questions));
         buttonC.addActionListener(e -> checkAnswer(buttonC, "C", questions));
