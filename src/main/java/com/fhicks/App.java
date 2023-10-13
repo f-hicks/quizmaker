@@ -41,7 +41,7 @@ public class App{
         File questionsfile = new File("quizquestions.csv");
         int numquestions = getfilelength(questionsfile);
         String[] questionsraw = new String[numquestions];
-        String[][] questions = new String[numquestions][5];
+        String[][] questions = new String[numquestions][5]; 
         
         try{
             Scanner filereader = new Scanner(questionsfile);
