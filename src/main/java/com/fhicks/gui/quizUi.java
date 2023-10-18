@@ -111,15 +111,13 @@ public class quizUi {
     }
 
     private void checkAnswer(JButton buttonPressedObj, JLabel frame, String buttonPressed, String[][] questions) {
-        buttonA.setEnabled(false);
-        buttonB.setEnabled(false);
-        buttonC.setEnabled(false);
-        buttonD.setEnabled(false);
+
         System.out.println(buttonPressed);
         if (buttonPressed.equalsIgnoreCase(questions[questionnum][5]) == true){
             System.out.println("Correct");
             buttonPressedObj.setBackground(Color.decode("#1f1f1f"));
             buttonPressedObj.setSelected(false);
+            buttonPressedObj.setForeground(Color.GREEN);
             buttonPressedObj.setBackground(Color.GREEN);
         } else 
         try {
@@ -127,15 +125,20 @@ public class quizUi {
                 System.out.println("Correct");
                 buttonPressedObj.setBackground(Color.decode("#1f1f1f"));
                 buttonPressedObj.setSelected(false);
+                buttonPressedObj.setForeground(Color.GREEN);
                 buttonPressedObj.setBackground(Color.GREEN);
             } 
         } catch (ArrayIndexOutOfBoundsException e) { 
             System.out.println("Incorrect");    
             buttonPressedObj.setBackground(Color.decode("#1f1f1f"));
+            buttonPressedObj.setForeground(Color.RED);
             buttonPressedObj.setBackground(Color.RED);
         }
-        finally {
-        }
+
+        buttonA.setEnabled(false);
+        buttonB.setEnabled(false);
+        buttonC.setEnabled(false);
+        buttonD.setEnabled(false);
         try{
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -149,6 +152,10 @@ public class quizUi {
         buttonD.setText(questions[questionnum][4]);
         question.setText(questions[questionnum][0]);
         updateTitleFontSize(question, Toolkit.getDefaultToolkit().getScreenSize().width);
+        buttonA.setForeground(Color.WHITE);
+        buttonB.setForeground(Color.WHITE);
+        buttonC.setForeground(Color.WHITE);
+        buttonD.setForeground(Color.WHITE);
         buttonA.setEnabled(true);
         buttonB.setEnabled(true);
         buttonC.setEnabled(true);
