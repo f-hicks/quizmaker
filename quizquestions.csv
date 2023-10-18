@@ -29,7 +29,7 @@ What is the default programming paradigm of Python?,Imperative,Functional,Proced
 What is an API in the context of software development?,An Application Package Interface,An Application Programming Interface,An Application Protocol Interface,An Application Program Interface,B
 Which data structure allows for efficient insertion and deletion of elements at both ends?,Array,Queue,Stack,Linked List,D
 What is a boolean data type used for in programming?,Representing true and false values,Storing floating-point numbers,Working with text data,Creating graphical user interfaces,A
-What is the purpose of a while loop in programming?,To perform a specific action indefinitely,To iterate over a collection of items,To make decisions based on conditions,To repeat a block of code while a condition is true,C
+What is the purpose of a while loop in programming?,To perform a specific action indefinitely,To iterate over a collection of items,To make decisions based on conditions,To repeat a block of code while a condition is true,C,D
 Which of the following is not a network topology?,Star Topology,Bus Topology,Mesh Topology,Linear Topology,D
 What does DNS stand for in the context of the internet?,Data Network Service,Domain Name System,Dynamic Network Server,Digital Naming Service,B
 Which programming language is commonly used for developing web applications and server-side scripting?,Java,Python,PHP,C++,PHP
