@@ -29,6 +29,19 @@ public class quizUi {
         }
     }
     
+    public JLabel updateTitleFontSize(JLabel label, int width) {
+        Font font = label.getFont();
+        FontMetrics fontMetrics = label.getFontMetrics(font);
+        int stringWidth = fontMetrics.stringWidth(label.getText());
+        System.out.println(stringWidth);
+        int componentWidth = width; // Use frame width instead of question width
+        double widthRatio = ((double) componentWidth / (double) stringWidth - 0.1);
+        int newFontSize = (int) (font.getSize() * widthRatio);
+        Font scaledFont = font.deriveFont((float) newFontSize);
+        label.setFont(scaledFont);
+        return label;
+    }
+
     public quizUi(final String[][] questions){
         questionnum = 0;
         panel = new JPanel(new GridLayout(2, 2));
@@ -39,10 +52,10 @@ public class quizUi {
 
 
         //set action listeners
-        buttonA.addActionListener(e -> checkAnswer(buttonA, "A", questions));
-        buttonB.addActionListener(e -> checkAnswer(buttonB, "B", questions));
-        buttonC.addActionListener(e -> checkAnswer(buttonC, "C", questions));
-        buttonD.addActionListener(e -> checkAnswer(buttonD, "D", questions));
+        buttonA.addActionListener(e -> checkAnswer(buttonA, question, "A", questions));
+        buttonB.addActionListener(e -> checkAnswer(buttonB, question, "B", questions));
+        buttonC.addActionListener(e -> checkAnswer(buttonC, question, "C", questions));
+        buttonD.addActionListener(e -> checkAnswer(buttonD, question, "D", questions));
 
 
         panel.add(buttonA);
@@ -57,9 +70,14 @@ public class quizUi {
 
         frame.setLayout(new BorderLayout());
         frame.getContentPane().setBackground(Color.decode("#1f1f1f"));
+
         question = new JLabel(questions[questionnum][0], JLabel.CENTER);
-        question.setForeground(Color.WHITE);
         question.setFont(new Font("ARIAL", 10, 40));
+        question.setForeground(Color.WHITE);
+        updateTitleFontSize(question, Toolkit.getDefaultToolkit().getScreenSize().width);
+
+        question.setPreferredSize(new Dimension(frame.getWidth(), question.getPreferredSize().height));
+
         frame.add(question, BorderLayout.NORTH);
 
         frame.add(panel);
@@ -92,7 +110,7 @@ public class quizUi {
         System.out.println("Hello World");
     }
 
-    private void checkAnswer(JButton buttonPressedObj, String buttonPressed, String[][] questions) {
+    private void checkAnswer(JButton buttonPressedObj, JLabel frame, String buttonPressed, String[][] questions) {
         buttonA.setEnabled(false);
         buttonB.setEnabled(false);
         buttonC.setEnabled(false);
@@ -111,11 +129,12 @@ public class quizUi {
                 buttonPressedObj.setSelected(false);
                 buttonPressedObj.setBackground(Color.GREEN);
             } 
-        } catch (ArrayIndexOutOfBoundsException e) {} 
-        finally {
+        } catch (ArrayIndexOutOfBoundsException e) { 
             System.out.println("Incorrect");    
             buttonPressedObj.setBackground(Color.decode("#1f1f1f"));
             buttonPressedObj.setBackground(Color.RED);
+        }
+        finally {
         }
         try{
             Thread.sleep(3000);
@@ -129,6 +148,7 @@ public class quizUi {
         buttonC.setText(questions[questionnum][3]);
         buttonD.setText(questions[questionnum][4]);
         question.setText(questions[questionnum][0]);
+        updateTitleFontSize(question, Toolkit.getDefaultToolkit().getScreenSize().width);
         buttonA.setEnabled(true);
         buttonB.setEnabled(true);
         buttonC.setEnabled(true);
