@@ -12,44 +12,31 @@ public class quizUi {
     static private JButton buttonD;
     static private JLabel question;
     static private int questionnum;
+
+    class answerbutton extends JButton {
+
+        public answerbutton(String text, Color color){
+            super(text);
+            // Set button borders with different colors
+            this.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(color, 2),
+                BorderFactory.createLineBorder(Color.BLACK, 2)
+            ));
+            // Set button foreground colors
+            this.setForeground(Color.WHITE);
+            // Set button background colors
+            this.setBackground(Color.decode("#1f1f1f"));
+        }
+    }
     
     public quizUi(final String[][] questions){
         questionnum = 0;
         panel = new JPanel(new GridLayout(2, 2));
-        buttonA = new JButton(questions[questionnum][1]);
-        buttonB = new JButton(questions[questionnum][2]);
-        buttonC = new JButton(questions[questionnum][3]);
-        buttonD = new JButton(questions[questionnum][4]);
+        buttonA = new answerbutton(questions[questionnum][1], Color.RED);
+        buttonB = new answerbutton(questions[questionnum][2], Color.GREEN);
+        buttonC = new answerbutton(questions[questionnum][3], Color.BLUE);
+        buttonD = new answerbutton(questions[questionnum][4], Color.YELLOW);
 
-        // Set button borders with different colors
-        buttonA.setBorder(BorderFactory.createCompoundBorder(
-        BorderFactory.createLineBorder(Color.RED, 2),
-        BorderFactory.createLineBorder(Color.BLACK, 2)
-        ));
-        buttonB.setBorder(BorderFactory.createCompoundBorder(
-        BorderFactory.createLineBorder(Color.GREEN, 2),
-        BorderFactory.createLineBorder(Color.BLACK, 2)
-        ));
-        buttonC.setBorder(BorderFactory.createCompoundBorder(
-        BorderFactory.createLineBorder(Color.BLUE, 2),
-        BorderFactory.createLineBorder(Color.BLACK, 2)
-        ));
-        buttonD.setBorder(BorderFactory.createCompoundBorder(
-        BorderFactory.createLineBorder(Color.YELLOW, 2),
-        BorderFactory.createLineBorder(Color.BLACK, 2)
-        ));
-
-        // Set button foreground colors
-        buttonA.setForeground(Color.WHITE);
-        buttonB.setForeground(Color.WHITE);
-        buttonC.setForeground(Color.WHITE);
-        buttonD.setForeground(Color.WHITE);
-
-        // Set button background colors
-        buttonA.setBackground(Color.decode("#1f1f1f"));
-        buttonB.setBackground(Color.decode("#1f1f1f"));
-        buttonC.setBackground(Color.decode("#1f1f1f"));
-        buttonD.setBackground(Color.decode("#1f1f1f"));
 
         //set action listeners
         buttonA.addActionListener(e -> checkAnswer(buttonA, "A", questions));
@@ -62,6 +49,8 @@ public class quizUi {
         panel.add(buttonB);
         panel.add(buttonC);
         panel.add(buttonD);
+
+        UIManager.put("Button.select", Color.decode("#1f1f1f"));
 
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
