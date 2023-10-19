@@ -12,6 +12,7 @@ public class quizUi {
     static private JButton buttonD;
     static private JLabel question;
     static private int questionnum;
+    private int score;
 
     class answerbutton extends JButton {
 
@@ -115,6 +116,7 @@ public class quizUi {
         System.out.println(buttonPressed);
         if (buttonPressed.equalsIgnoreCase(questions[questionnum][5]) == true){
             System.out.println("Correct");
+            ++score;
             buttonPressedObj.setBackground(Color.decode("#1f1f1f"));
             buttonPressedObj.setSelected(false);
             buttonPressedObj.setForeground(Color.GREEN);
@@ -123,6 +125,7 @@ public class quizUi {
         try {
             if (questions[questionnum][6] != null || (buttonPressed.equalsIgnoreCase(questions[questionnum][6]))){
                 System.out.println("Correct");
+                ++score;
                 buttonPressedObj.setBackground(Color.decode("#1f1f1f"));
                 buttonPressedObj.setSelected(false);
                 buttonPressedObj.setForeground(Color.GREEN);
@@ -146,12 +149,18 @@ public class quizUi {
         }
         buttonPressedObj.setBackground(Color.decode("#1f1f1f"));
         ++questionnum;
+
+        if (questionnum == questions.length){
+            System.out.println("Score: " + score);
+            new quizEnd();
+        }
         buttonA.setText(questions[questionnum][1]);
         buttonB.setText(questions[questionnum][2]);
         buttonC.setText(questions[questionnum][3]);
         buttonD.setText(questions[questionnum][4]);
         question.setText(questions[questionnum][0]);
         updateTitleFontSize(question, Toolkit.getDefaultToolkit().getScreenSize().width);
+
         buttonA.setForeground(Color.WHITE);
         buttonB.setForeground(Color.WHITE);
         buttonC.setForeground(Color.WHITE);
