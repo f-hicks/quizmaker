@@ -8,6 +8,8 @@ import java.io.FileNotFoundException;
 
 public class App{
 
+    public static final int numQuestionsInQuiz = 20;
+
     private static Random rand = new Random();
     
     public static int getfilelength(File file){
@@ -36,7 +38,7 @@ public class App{
     }
 
     public static String[][] generate_quiz(){
-        //get 20 random questions from the csv file and return a list of questions
+        //get some random questions from the csv file and return a list of questions
         //each question is a list of 5 elements: question, answera, answerb, answerc, answerd, correctanswerletter
         File questionsfile = new File("quizquestions.csv");
         int numquestions = getfilelength(questionsfile);
@@ -60,10 +62,10 @@ public class App{
             ++count;
         }
 
-        String[][] questionsused = new String[20][5];
+        String[][] questionsused = new String[numQuestionsInQuiz][5];
         
         count = 0;
-        while (count < 20){
+        while (count < numQuestionsInQuiz){
             int randomnum = rand.nextInt(numquestions);
             questionsused[count] = questions[randomnum];
             ++count;
