@@ -42,38 +42,38 @@ What is the purpose of an algorithm in computer science?,To store data,To solve 
 What is the maximum value that can be represented by 8 bits in binary?,255,256,128,64,A
 Which programming language is commonly used for developing Android applications?,Java,Python,C++,HTML,A
 What does the HTTP status code "404" indicate?,Server error,Page not found,Request timeout,Successful request but no content,B
-What does the acronym URL stand for?,Universal Resource Locator,Uniform Resource Locator,Unique Resource Locator,Unified Resource Location,A
+What does the acronym URL stand for?,Universal Resource Locator,Uniform Resource Locator,Unique Resource Locator,Unified Resource Location,B
 Which data structure allows for efficient searching, insertion, and deletion of elements?,Array,Linked List,Hash Table,Stack,C
 What does the term "GUI" stand for in computing?,Graphical User Interface,General Utility Item,Global User Interaction,Graphical User Instruction,A
 In which layer of the OSI model do routers operate?,Application Layer,Transport Layer,Network Layer,Data Link Layer,C
 Which of the following is a non-relational database system?,SQL Server,MySQL,NoSQL,MongoDB,C
-What is the purpose of a do-while loop in programming?,To perform a specific action indefinitely,To iterate over a collection of items,To make decisions based on conditions,To repeat a block of code while a condition is true, D
-Which of the following is an example of a high-level programming language?,Assembly,Java,C++,Binary, C
-What is a primary key in a database table?,A key used for opening the database,An index on a database table,An attribute that uniquely identifies a record,An attribute that contains descriptive data, C
-What is the purpose of a pointer in programming?,To display messages on the screen,To point to the next program to be executed,To store a reference to a memory address,To perform arithmetic calculations, C
-What does DNS stand for in the context of domain registration?,Data Network Service,Domain Name System,Dynamic Network Server,Digital Naming Service, B
-What is a firewall rule used for in network security?,Blocking all incoming and outgoing traffic,Defining how traffic is handled,Managing network cables,Optimizing network performance, B
-Which of the following is a popular version control system for software development?,Windows,Android,Unix,Git, D
-What is the main purpose of an index in a database?,To display data to users,To optimize query performance,To enforce data integrity,To organize data into tables, B
-What does SQL stand for in the context of databases?,Structured Query Language,Standard Query Language,Simple Query Link,Structured Query Link, A
-What is the purpose of a switch in networking?,To connect devices within a local network,To route traffic between different networks,To translate between IP addresses and domain names,To filter email spam, A
-Which of the following is an example of a front-end web development technology?,Node.js,PHP,HTML,C++, C
+What is the purpose of a do-while loop in programming?,To perform a specific action indefinitely,To iterate over a collection of items,To make decisions based on conditions,To repeat a block of code while a condition is true,D
+Which of the following is an example of a high-level programming language?,Assembly,Java,C++,Binary,C
+What is a primary key in a database table?,A key used for opening the database,An index on a database table,An attribute that uniquely identifies a record,An attribute that contains descriptive data,C
+What is the purpose of a pointer in programming?,To display messages on the screen,To point to the next program to be executed,To store a reference to a memory address,To perform arithmetic calculations,C
+What does DNS stand for in the context of domain registration?,Data Network Service,Domain Name System,Dynamic Network Server,Digital Naming Service,B
+What is a firewall rule used for in network security?,Blocking all incoming and outgoing traffic,Defining how traffic is handled,Managing network cables,Optimizing network performance,B
+Which of the following is a popular version control system for software development?,Windows,Android,Unix,Git,D
+What is the main purpose of an index in a database?,To display data to users,To optimize query performance,To enforce data integrity,To organize data into tables,B
+What does SQL stand for in the context of databases?,Structured Query Language,Standard Query Language,Simple Query Link,Structured Query Link,A
+What is the purpose of a switch in networking?,To connect devices within a local network,To route traffic between different networks,To translate between IP addresses and domain names,To filter email spam,A
+Which of the following is an example of a front-end web development technology?,Node.js,PHP,HTML,C++,C
 What does RAID stand for in the context of data storage?,Redundant Array of Independent Disks,Random Access Integrated Drive,Remote Access and Inclusion Device,Reliable Association of Information Drives,A
-In computer programming, what is a "syntax error"?,A type of hardware failure,A runtime error caused by a user's input,A violation of the programming language's rules regarding proper structure,A hardware conflict between devices,C
-What does IPsec stand for in the context of network security?,Internet Protocol Secure,Intrusion Prevention and Security,Interconnected Protocol Secure,International Privacy and Security, A
-What is the primary function of an ethernet cable in networking?,Transmit data between devices,Store data on a computer,Protect against viruses,Convert digital data to analog, A
-What is the purpose of a pointer in programming?,To display messages on the screen,To point to the next program to be executed,To store a reference to a memory address,To perform arithmetic calculations, C
-Which programming language is known for its use in game development?,Java,Python,C++,Unity, D
-What does the term "bandwidth" refer to in networking?,The physical width of network cables,The number of devices connected to a network,The speed at which data can be transmitted over a network,The physical length of a network cable, C
-In the context of databases, what does SQL injection refer to?,Injecting structured query language into a database,Injecting software code into a database,Injecting harmful substances into a database,Injecting images into a database, B
-What is the purpose of a subnet mask in IP networking?,To indicate the network portion of an IP address,To prevent unauthorized access to a network,To hide a computer's IP address,To encrypt network traffic, A
-Which of the following is a commonly used method of data encryption?,SHA-256,HTML,CSS,API, A
-What is a "compiler" in the context of programming?,A program that converts high-level source code into machine code,An online gaming service,An input device,An operating system feature, A
-Which programming language is used for developing web applications that run in the browser?,Python,Java,JavaScript,C++, C
-What does the term "GUI" stand for in computing?,Graphical User Interface,General Utility Item,Global User Interaction,Graphical User Instruction, A
-Which of the following is a commonly used web server software?,Adobe Photoshop,Microsoft Word,Apache Nginx,Visual Studio Code, C
-In computer science, what is an "algorithm"?,A collection of hardware components,An unsolvable problem,The process or set of rules to be followed in calculations or other problem-solving operations,An error message, C
-What does "HTTP" stand for in the context of web communication?,Highly Typed Text Protocol,Home Tool Transfer Protocol,Hyper Transfer Text Protocol,HyperText Transfer Protocol, D
-What is the main purpose of a database management system (DBMS)?,To design graphics for web pages,To manage and manipulate databases,To create web content,To perform mathematical calculations, B
-In computer science, what is a "compiler error"?,An error that occurs when running a program,An error that occurs during the compilation of source code,An error in a compiler's code,An error message displayed to the user, B
-What is a "loop" in programming?,A structure for executing a block of code multiple times,An error in a program,An input device,An online chat room, A
+In computer programming what is a "syntax error"?,A type of hardware failure,A runtime error caused by a user's input,A violation of the programming language's rules regarding proper structure,A hardware conflict between devices,C
+What does IPsec stand for in the context of network security?,Internet Protocol Secure,Intrusion Prevention and Security,Interconnected Protocol Secure,International Privacy and Security,A
+What is the primary function of an ethernet cable in networking?,Transmit data between devices,Store data on a computer,Protect against viruses,Convert digital data to analog,A
+What is the purpose of a pointer in programming?,To display messages on the screen,To point to the next program to be executed,To store a reference to a memory address,To perform arithmetic calculations,C
+Which programming language is known for its use in game development?,Java,Python,C++,Unity,A,C
+What does the term "bandwidth" refer to in networking?,The physical width of network cables,The number of devices connected to a network,The speed at which data can be transmitted over a network,The physical length of a network cable,C
+In the context of databases what does SQL injection refer to?,Injecting structured query language into a database,Injecting software code into a database,Injecting harmful substances into a database,Injecting images into a database,B
+What is the purpose of a subnet mask in IP networking?,To indicate the network portion of an IP address,To prevent unauthorized access to a network,To hide a computer's IP address,To encrypt network traffic,A
+Which of the following is a commonly used method of data encryption?,SHA-256,HTML,CSS,API,A
+What is a "compiler" in the context of programming?,A program that converts high-level source code into machine code,An online gaming service,An input device,An operating system feature,A
+Which programming language is used for developing web applications that run in the browser?,Python,Java,JavaScript,C++,C
+What does the term "GUI" stand for in computing?,Graphical User Interface,General Utility Item,Global User Interaction,Graphical User Instruction,A
+Which of the following is a commonly used web server software?,Adobe Photoshop,Microsoft Word,Apache Nginx,Visual Studio Code,C
+In computer science what is an "algorithm"?,A collection of hardware components,An unsolvable problem,The process or set of rules to be followed in calculations or other problem-solving operations,An error message,C
+What does "HTTP" stand for in the context of web communication?,Highly Typed Text Protocol,Home Tool Transfer Protocol,Hyper Transfer Text Protocol,HyperText Transfer Protocol,D
+What is the main purpose of a database management system (DBMS)?,To design graphics for web pages,To manage and manipulate databases,To create web content,To perform mathematical calculations,B
+In computer science what is a "compiler error"?,An error that occurs when running a program,An error that occurs during the compilation of source code,An error in a compiler's code,An error message displayed to the user,B
+What is a "loop" in programming?,A structure for executing a block of code multiple times,An error in a program,An input device,An online chat room,A
