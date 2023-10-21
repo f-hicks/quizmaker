@@ -6,6 +6,7 @@ import java.lang.InterruptedException;
 
 public class quizUi {
     static private JPanel panel;
+    static private JFrame frame;
     static private JButton buttonA;
     static private JButton buttonB;
     static private JButton buttonC;
@@ -20,12 +21,13 @@ public class quizUi {
             super(text);
             // Set button borders with different colors
             this.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(color, 2),
-                BorderFactory.createLineBorder(Color.BLACK, 2)
+                BorderFactory.createLineBorder(Color.BLACK, 4),
+                BorderFactory.createLineBorder(color, 4)
             ));
             // Set button foreground colors
             this.setForeground(Color.WHITE);
             // Set button background colors
+            this.setFont(new Font("ARIAL", 10, 80));
             this.setBackground(Color.decode("#1f1f1f"));
         }
     }
@@ -43,6 +45,22 @@ public class quizUi {
         return label;
     }
 
+    public void updateButtonFontSize(JButton[] buttons, int width) {
+        int maxWidth = 0;
+        for (JButton button : buttons) {
+            Font font = button.getFont();
+            FontMetrics fontMetrics = button.getFontMetrics(font);
+            int stringWidth = fontMetrics.stringWidth(button.getText());
+            maxWidth = Math.max(maxWidth, stringWidth);
+        }
+        double widthRatio = ((double) width / (double) maxWidth - 0.1);
+        int newFontSize = (int) (buttons[0].getFont().getSize() * widthRatio);
+        Font scaledFont = buttons[0].getFont().deriveFont((float) newFontSize);
+        for (JButton button : buttons) {
+            button.setFont(scaledFont);
+        }
+    }
+
     public quizUi(final String[][] questions){
         questionnum = 0;
         panel = new JPanel(new GridLayout(2, 2));
@@ -52,21 +70,46 @@ public class quizUi {
         buttonD = new answerbutton(questions[questionnum][4], Color.YELLOW);
 
 
-        //set action listeners
-        buttonA.addActionListener(e -> checkAnswer(buttonA, question, "A", questions));
-        buttonB.addActionListener(e -> checkAnswer(buttonB, question, "B", questions));
-        buttonC.addActionListener(e -> checkAnswer(buttonC, question, "C", questions));
-        buttonD.addActionListener(e -> checkAnswer(buttonD, question, "D", questions));
+        //set action listeners by iterating through the buttons and assigning them to the correct answer
+        JButton[] buttons = {buttonA, buttonB, buttonC, buttonD};
+        updateButtonFontSize(buttons, 800);
 
+        String[] chars = {"A", "B", "C", "D"};
 
-        panel.add(buttonA);
-        panel.add(buttonB);
-        panel.add(buttonC);
-        panel.add(buttonD);
+        for (int i = 0; i < buttons.length; i++) {
+            JButton button = buttons[i];
+            String qchar = chars[i];
+
+            button.addActionListener(new AbstractAction() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if ((qchar.equalsIgnoreCase(questions[questionnum][5]) == true) ||
+                       (qchar.equalsIgnoreCase(questions[questionnum][6]))
+                       ){
+
+                        button.setBackground(Color.GREEN);
+                    } 
+                } catch (ArrayIndexOutOfBoundsException e_) { 
+
+                    button.setBackground(Color.RED);
+  
+                }
+                new Thread(() -> {
+                    checkAnswer(buttonA, question, qchar, questions);
+                }).start();
+
+            }
+        });
+        panel.add(button);
+        }
+
 
         UIManager.put("Button.select", Color.decode("#1f1f1f"));
 
-        JFrame frame = new JFrame();
+        frame = new JFrame();
+        
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.setLayout(new BorderLayout());
@@ -82,6 +125,7 @@ public class quizUi {
         frame.add(question, BorderLayout.NORTH);
 
         frame.add(panel);
+        frame.pack();
 
         frame.setSize(300, 300);
         KeyStroke escapeKeyStroke = KeyStroke.getKeyStroke("ESCAPE");
@@ -111,37 +155,24 @@ public class quizUi {
         System.out.println("Hello World");
     }
 
-    private void checkAnswer(JButton buttonPressedObj, JLabel frame, String buttonPressed, String[][] questions) {
-
-        System.out.println(buttonPressed);
+    private void checkAnswer(JButton buttonPressedObj, JLabel label, String buttonPressed, String[][] questions) {
         if (buttonPressed.equalsIgnoreCase(questions[questionnum][5]) == true){
             System.out.println("Correct");
             ++score;
-            buttonPressedObj.setBackground(Color.decode("#1f1f1f"));
-            buttonPressedObj.setSelected(false);
-            buttonPressedObj.setForeground(Color.GREEN);
-            buttonPressedObj.setBackground(Color.GREEN);
+
         } else 
         try {
             if (questions[questionnum][6] != null || (buttonPressed.equalsIgnoreCase(questions[questionnum][6]))){
                 System.out.println("Correct");
                 ++score;
-                buttonPressedObj.setBackground(Color.decode("#1f1f1f"));
-                buttonPressedObj.setSelected(false);
-                buttonPressedObj.setForeground(Color.GREEN);
-                buttonPressedObj.setBackground(Color.GREEN);
             } 
-        } catch (ArrayIndexOutOfBoundsException e) { 
+        } catch (ArrayIndexOutOfBoundsException e_) { 
             System.out.println("Incorrect");    
-            buttonPressedObj.setBackground(Color.decode("#1f1f1f"));
-            buttonPressedObj.setForeground(Color.RED);
-            buttonPressedObj.setBackground(Color.RED);
         }
-
-        buttonA.setEnabled(false);
-        buttonB.setEnabled(false);
-        buttonC.setEnabled(false);
-        buttonD.setEnabled(false);
+        //buttonA.setEnabled(false);
+        //buttonB.setEnabled(false);
+        //buttonC.setEnabled(false);
+        //buttonD.setEnabled(false);
         try{
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -152,23 +183,27 @@ public class quizUi {
 
         if (questionnum == questions.length){
             System.out.println("Score: " + score);
-            new quizEnd();
+            panel.setVisible(false);
+            question.setVisible(false);
+
+            Double scored = (double) score;
+            frame.dispose();
+            new quizEnd(score, scored / questions.length);
+            return;
         }
-        buttonA.setText(questions[questionnum][1]);
-        buttonB.setText(questions[questionnum][2]);
-        buttonC.setText(questions[questionnum][3]);
-        buttonD.setText(questions[questionnum][4]);
+        JButton[] buttons = {buttonA, buttonB, buttonC, buttonD};
+        int count = 1;
+
+        for (JButton button : buttons) {
+            button.setBackground(Color.decode("#1f1f1f"));
+            button.setText(questions[questionnum][count]);
+            button.setForeground(Color.WHITE);
+            button.setEnabled(true);
+            ++count;
+        } 
+        updateButtonFontSize(buttons, 800);
         question.setText(questions[questionnum][0]);
         updateTitleFontSize(question, Toolkit.getDefaultToolkit().getScreenSize().width);
-
-        buttonA.setForeground(Color.WHITE);
-        buttonB.setForeground(Color.WHITE);
-        buttonC.setForeground(Color.WHITE);
-        buttonD.setForeground(Color.WHITE);
-        buttonA.setEnabled(true);
-        buttonB.setEnabled(true);
-        buttonC.setEnabled(true);
-        buttonD.setEnabled(true);
 
 
     }
