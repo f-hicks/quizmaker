@@ -43,7 +43,7 @@ What is the maximum value that can be represented by 8 bits in binary?,255,256,1
 Which programming language is commonly used for developing Android applications?,Java,Python,C++,HTML,A
 What does the HTTP status code "404" indicate?,Server error,Page not found,Request timeout,Successful request but no content,B
 What does the acronym URL stand for?,Universal Resource Locator,Uniform Resource Locator,Unique Resource Locator,Unified Resource Location,B
-Which data structure allows for efficient searching, insertion, and deletion of elements?,Array,Linked List,Hash Table,Stack,C
+Which data structure allows for efficient searching insertion and deletion of elements?,Array,Linked List,Hash Table,Stack,C
 What does the term "GUI" stand for in computing?,Graphical User Interface,General Utility Item,Global User Interaction,Graphical User Instruction,A
 In which layer of the OSI model do routers operate?,Application Layer,Transport Layer,Network Layer,Data Link Layer,C
 Which of the following is a non-relational database system?,SQL Server,MySQL,NoSQL,MongoDB,C
