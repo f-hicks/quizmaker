@@ -32,7 +32,7 @@ What is a boolean data type used for in programming?,Representing true and false
 What is the purpose of a while loop in programming?,To perform a specific action indefinitely,To iterate over a collection of items,To make decisions based on conditions,To repeat a block of code while a condition is true,C,D
 Which of the following is not a network topology?,Star Topology,Bus Topology,Mesh Topology,Linear Topology,D
 What does DNS stand for in the context of the internet?,Data Network Service,Domain Name System,Dynamic Network Server,Digital Naming Service,B
-Which programming language is commonly used for developing web applications and server-side scripting?,Java,Python,PHP,C++,PHP
+Which programming language is commonly used for developing web applications and server-side scripting?,Java,Python,PHP,C++,C
 What is the function of a firewall in network security?,To block all incoming and outgoing network traffic,To monitor and filter network traffic based on predefined rules,To boost network performance,To authenticate users accessing the network,B
 What is an IPv6 address used for in networking?,Identifying devices on a local network,Assigning dynamic IP addresses,Identifying devices on the global internet,Managing network cables and connectors,C
 Which of the following is not a commonly used web development framework?,React,Angular,Node.js,OpenGL,D
