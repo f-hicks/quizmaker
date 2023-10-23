@@ -53,32 +53,6 @@ public class quizEnd {
                 break;
             }
         }
-        JFrame frame = new JFrame();
-        frame.setSize(300, 300);
-        KeyStroke escapeKeyStroke = KeyStroke.getKeyStroke("ESCAPE");
-        Action escapeAction = new AbstractAction() {
-          public void actionPerformed(ActionEvent e) {
-            GraphicsEnvironment.getLocalGraphicsEnvironment()
-                .getDefaultScreenDevice().setFullScreenWindow(null);
-          }
-        };
-        frame.pack();
-    
-        frame.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
-            .put(escapeKeyStroke, "ESCAPE");
-        frame.getRootPane().getActionMap().put("ESCAPE", escapeAction);
-        
-        GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-        .setFullScreenWindow(frame);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        frame.setLayout(new BorderLayout());
-        frame.getContentPane().setBackground(Color.decode("#1f1f1f"));
-
-        frame.getContentPane().removeAll();
-        frame.getContentPane().repaint();  
-
         JTextArea resultBox = new JTextArea();
         resultBox.setEditable(false);
         resultBox.setLineWrap(true);
@@ -89,13 +63,36 @@ public class quizEnd {
         resultBox.setForeground(Color.WHITE);
         resultBox.setText("Score: " + score + "\nGrade: " + grade + "\nPercentage: " + roundedPercentage + "%");
         
-        resultBox.setAlignmentX(JLabel.CENTER);
-        resultBox.setAlignmentY(Component.CENTER_ALIGNMENT);
+        resultBox.setLineWrap(true);
 
-        frame.setLayout(new BorderLayout());
-        frame.add(resultBox, BorderLayout.CENTER);
-    }
+        JFrame frame = new JFrame();
+        frame.setUndecorated(true);
+        frame.setResizable(false);
+        frame.setSize(300, 300);
+        KeyStroke escapeKeyStroke = KeyStroke.getKeyStroke("ESCAPE");
+        Action escapeAction = new AbstractAction() {
+          public void actionPerformed(ActionEvent e) {
+            GraphicsEnvironment.getLocalGraphicsEnvironment()
+                .getDefaultScreenDevice().setFullScreenWindow(null);
+          }
+        };
         
+        frame.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+        .put(escapeKeyStroke, "ESCAPE");
+        frame.getRootPane().getActionMap().put("ESCAPE", escapeAction);
+        
+        GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+        .setFullScreenWindow(frame);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        frame.setLayout(new BorderLayout());
+        //frame.getContentPane().setBackground(Color.decode("#1f1f1f")); 
+        
+        frame.add(resultBox, BorderLayout.CENTER);
+        frame.setVisible(true);
+        //frame.pack();
+    }
+    
 
 /*        Dimension size = frame.getContentPane().getSize();
         resultBox.setPreferredSize(size); */
