@@ -1,6 +1,7 @@
 package com.fhicks;
 import java.util.*;
 
+import com.fhicks.gui.quizEnd;
 import com.fhicks.gui.quizUi;
 
 import java.io.File;
@@ -77,8 +78,9 @@ public class App{
 
     public static void main(String[] args){
         String[][] questions = generate_quiz();
-        new quizUi(questions);
-
+        quizUi quizUi = new quizUi(questions);
+        while ((quizUi.finished==false)) {try {Thread.sleep(100);} catch (InterruptedException e){};} //wait until the quiz is finished
         
+        new quizEnd(quizUi.score, (double) quizUi.score / numQuestionsInQuiz);
     }
 }
