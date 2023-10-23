@@ -13,7 +13,8 @@ public class quizUi {
     static private JButton buttonD;
     static private JLabel question;
     static private int questionnum;
-    private int score;
+    public int score;
+    public Boolean finished = false;
 
     class answerbutton extends JButton {
 
@@ -29,6 +30,7 @@ public class quizUi {
             // Set button background colors
             this.setFont(new Font("ARIAL", 10, 80));
             this.setBackground(Color.decode("#1f1f1f"));
+            this.setFocusable(false);
         }
     }
     
@@ -45,20 +47,30 @@ public class quizUi {
         return label;
     }
 
-    public void updateButtonFontSize(JButton[] buttons, int width) {
+    public void updateButtonFontSize(JButton[] buttons, double width) {
+        width = width / 2;
         int maxWidth = 0;
+        int currentFontSize = buttons[0].getFont().getSize();
+        String longestString = "";
         for (JButton button : buttons) {
             Font font = button.getFont();
             FontMetrics fontMetrics = button.getFontMetrics(font);
             int stringWidth = fontMetrics.stringWidth(button.getText());
-            maxWidth = Math.max(maxWidth, stringWidth);
+            if (stringWidth > maxWidth) {
+                maxWidth = stringWidth;
+                longestString = button.getText();
+            }
         }
-        double widthRatio = ((double) width / (double) maxWidth - 0.1);
-        int newFontSize = (int) (buttons[0].getFont().getSize() * widthRatio);
+        System.out.println(longestString);
+        
+        double widthRatio = (((double) width*0.9)/ ((double) maxWidth));
+        int newFontSize = (int) ((currentFontSize * widthRatio));
         Font scaledFont = buttons[0].getFont().deriveFont((float) newFontSize);
         for (JButton button : buttons) {
             button.setFont(scaledFont);
         }
+        System.out.println(widthRatio);
+        System.out.println(newFontSize);
     }
 
     public quizUi(final String[][] questions){
@@ -72,7 +84,7 @@ public class quizUi {
 
         //set action listeners by iterating through the buttons and assigning them to the correct answer
         JButton[] buttons = {buttonA, buttonB, buttonC, buttonD};
-        updateButtonFontSize(buttons, 800);
+        updateButtonFontSize(buttons, Toolkit.getDefaultToolkit().getScreenSize().getWidth());
 
         String[] chars = {"A", "B", "C", "D"};
 
@@ -82,34 +94,31 @@ public class quizUi {
 
             button.addActionListener(new AbstractAction() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    if ((qchar.equalsIgnoreCase(questions[questionnum][5]) == true) ||
-                       (qchar.equalsIgnoreCase(questions[questionnum][6]))
-                       ){
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        if ((qchar.equalsIgnoreCase(questions[questionnum][5]) == true) ||
+                        (qchar.equalsIgnoreCase(questions[questionnum][6])))
+                        {button.setBackground(Color.GREEN);} 
+                    } catch (ArrayIndexOutOfBoundsException e_) { 
+                        button.setBackground(Color.RED);
+                    }
+                    new Thread(() -> {
+                        checkAnswer(buttonA, question, qchar, questions);
+                    }).start();
 
-                        button.setBackground(Color.GREEN);
-                    } 
-                } catch (ArrayIndexOutOfBoundsException e_) { 
-
-                    button.setBackground(Color.RED);
-  
                 }
-                new Thread(() -> {
-                    checkAnswer(buttonA, question, qchar, questions);
-                }).start();
-
-            }
-        });
-        panel.add(button);
+            });
+            panel.add(button);
         }
 
 
         UIManager.put("Button.select", Color.decode("#1f1f1f"));
-
+        
         frame = new JFrame();
         
+        frame.setUndecorated(true);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.setLayout(new BorderLayout());
@@ -140,8 +149,10 @@ public class quizUi {
             .put(escapeKeyStroke, "ESCAPE");
         frame.getRootPane().getActionMap().put("ESCAPE", escapeAction);
 
-        GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-        .setFullScreenWindow(frame);
+        //GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+        //.setFullScreenWindow(frame);
+        GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().setFullScreenWindow(frame);
+        
         //display the quiz
         //take user input
         //check if user input is correct
@@ -156,6 +167,8 @@ public class quizUi {
     }
 
     private void checkAnswer(JButton buttonPressedObj, JLabel label, String buttonPressed, String[][] questions) {
+//        System.out.println(buttonPressed);
+//        System.out.println(questions[questionnum][5]);
         if (buttonPressed.equalsIgnoreCase(questions[questionnum][5]) == true){
             System.out.println("Correct");
             ++score;
@@ -185,10 +198,8 @@ public class quizUi {
             System.out.println("Score: " + score);
             panel.setVisible(false);
             question.setVisible(false);
-
-            Double scored = (double) score;
             frame.dispose();
-            new quizEnd(score, scored / questions.length);
+            finished = true;
             return;
         }
         JButton[] buttons = {buttonA, buttonB, buttonC, buttonD};
